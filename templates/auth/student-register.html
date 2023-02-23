@@ -1,0 +1,74 @@
+{% extends 'client/externes/baseClient.html' %}
+{% load static %}
+{% block title %}Student-register{% endblock title %}
+{% block content %}
+<!-- =======================
+Main Banner START -->
+<section class="mb-9 position-relative" style="background-image:url(assets/images/bg/07.jpg); background-position: center left; background-size: cover;">
+	<!-- Background dark overlay -->
+	<div class="bg-overlay bg-blue opacity-9"></div>
+	<div class="container z-index-9 position-relative">
+		<div class="row g-4 justify-content-between align-items-center">
+			<!-- Content -->
+			<div class="col-lg-6">
+				<h1 class="text-white">Become a professional in either field</h1>
+				<p class="text-white mb-3">Man children rejoiced yet uncommonly his ten who. Yet uncommonly his ten who diminution astonished. Yet uncommonly his ten who diminution astonished.</p>
+				<a href="#" class="btn btn-white mb-0">Explore our courses<i class="bi bi-arrow-right ms-2"></i></a>
+			</div>
+
+			<!-- Form -->
+			<div class="col-lg-6 col-xl-5 mb-n9">
+				<div class="card card-body shadow p-4 p-sm-5">
+					<!-- Title -->
+					<h2 class="mb-0 h3">Welcome back</h2>
+					<p class="mb-0">New here?<a href="#"> Create an account</a></p>
+							<!-- Form START -->
+							<form>
+								<!-- Email -->
+								<div class="mb-4">
+									<label for="exampleInputEmail1" class="form-label">Email address *</label>
+									<div class="input-group input-group-lg">
+										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
+										<input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="exampleInputEmail1">
+									</div>
+								</div>
+								<!-- Password -->
+								<div class="mb-4">
+									<label for="inputPassword5" class="form-label">Password *</label>
+									<div class="input-group input-group-lg">
+										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
+										<input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword5">
+									</div>
+								</div>
+								<!-- Confirm Password -->
+								<div class="mb-4">
+									<label for="inputPassword6" class="form-label">Confirm Password *</label>
+									<div class="input-group input-group-lg">
+										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
+										<input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword6">
+									</div>
+								</div>
+								<!-- Check box -->
+								<div class="mb-4">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="checkbox-1">
+										<label class="form-check-label" for="checkbox-1">By signing up, you agree to the<a href="#"> terms of service</a></label>
+									</div>
+								</div>
+								<!-- Button -->
+								<div class="align-items-center mt-0">
+									<div class="d-grid">
+										<button class="btn btn-primary mb-0" type="button">Sign Up</button>
+									</div>
+								</div>
+							</form>
+							<!-- Form END -->
+				</div>
+			</div>
+
+		</div> <!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+Main Banner END -->
+{% endblock content %}

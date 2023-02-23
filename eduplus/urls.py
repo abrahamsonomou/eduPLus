@@ -11,6 +11,9 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     ################# End Admin ####################
 
+
+    path('', include('core.urls')),
+
     # path(r'',include('core.urls')),
     # path('api/', include('api.urls')),
    
