@@ -13,11 +13,21 @@ def contact(request):
 def blog(request):
     return render(request,'client/pages/blog.html')
 
+def blogDetails(request):
+    return render(request,'client/pages/blog-detail.html')
+
 def shop(request):
     return render(request,'client/pages/shop.html')
 
 def shopProductDetail(request):
     return render(request,'client/pages/shop-product-detail.html')
+
+def checkout(request):
+    return render(request,'client/pages/checkout.html')
+
+def cart(request):
+    return render(request,'client/pages/cart.html')
+
 
 def instructors(request):
     return render(request,'client/pages/instructors.html')

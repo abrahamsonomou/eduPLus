@@ -8,6 +8,8 @@ urlpatterns = [
     path('about', views.about, name='about'),
 
     path('shop', views.shop, name='shop'),
+    path('checkout', views.checkout, name='checkout'),
+    path('cart', views.cart, name='cart'),
     path('shopProductDetail', views.shopProductDetail, name='shopProductDetail'),
 
 
@@ -16,6 +18,8 @@ urlpatterns = [
     path('coursDetails', views.coursDetails, name='coursDetails'),
 
     path('blog', views.blog, name='blog'),
+    path('blogDetails', views.blogDetails, name='blogDetails'),
+
     path('contact', views.contact, name='contact'),
 
     path('instructors', views.instructors, name='instructors'),
