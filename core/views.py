@@ -1,4 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from contact.forms import ContactForm
+from django.core.mail import EmailMessage
+from django.utils.translation import gettext as _
 
 # Create your views here.
 def home(request):
@@ -8,7 +13,33 @@ def about(request):
     return render(request,'client/pages/about.html')
 
 def contact(request):
-    return render(request,'client/pages/contact.html')
+    form=ContactForm(request.POST)
+    if form.is_valid():   
+        instance=form.save(commit=False)
+        instance.save()
+
+        
+        nom=form.cleaned_data['nom']
+        email=form.cleaned_data['email']
+        message=form.cleaned_data['message']
+
+        # from_email = settings.DEFAULT_FROM_EMAIL
+        
+        email = EmailMessage(
+        _('Nouveau message de myealearning'),
+        content,
+        _('myealearning'),
+        [config('ADMIN_EMAIL')],
+        headers = { 'Reply-To': contact_email }
+        )
+        email.send()
+        messages.success(request, _('Thank you ! We will check in as soon as possible ;-)'))
+            
+        return redirect("home")
+    context={
+    'form':form,
+    }  
+    return render(request,'client/pages/contact.html',context)
 
 def blog(request):
     return render(request,'client/pages/blog.html')

@@ -45,6 +45,7 @@ PROJECT_APPS=[
     'core',
     'blog',
     'shop',
+    'contact',
     'accounts',
 ]
 
