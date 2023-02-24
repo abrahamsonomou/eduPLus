@@ -22,6 +22,9 @@ urlpatterns = [
 
     path('contact', views.contact, name='contact'),
 
+
+    path('examen', views.examen, name='examen'),
+
     path('instructors', views.instructors, name='instructors'),
     path('instructorDetails', views.instructorDetails, name='instructorDetails'),
     path('becomeInstructor', views.becomeInstructor, name='becomeInstructor'),

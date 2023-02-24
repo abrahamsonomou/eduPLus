@@ -48,3 +48,6 @@ def coursCategorie(request):
 
 def cours(request):
     return render(request,'client/pages/cours.html')  
+
+def examen(request):
+    return render(request,'client/examen/examen.html')  
