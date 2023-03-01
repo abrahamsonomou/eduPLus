@@ -51,7 +51,7 @@
 		<nav class="navbar navbar-expand-xl">
 			<div class="container">
 				<!-- Logo START -->
-				<a class="navbar-brand" href="index-2.html">
+				<a class="navbar-brand" href="{% url 'home' %}">
 					<img class="light-mode-item navbar-brand-item" src="{% static 'assets/images/logo.svg' %} " alt="logo">
 					<img class="dark-mode-item navbar-brand-item" src="{% static 'assets/images/logo-light.svg' %} " alt="logo">
 				</a>
@@ -94,21 +94,27 @@
 					<!-- Nav Main menu END -->
 	
 					<!-- Nav Search START -->
-					<div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
+					<div class="nav my-3 my-xl-0 px-2 flex-nowrap align-items-center">
 						<div class="nav-item w-100">
 							<form class="position-relative">
 								<input class="form-control pe-5 bg-transparent" type="search" placeholder="Search" aria-label="Search">
 								<button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
 									<i class="fas fa-search fs-6 "></i>
 								</button>
-							</form>
+							</form> 
+
 						</div>
 					</div>
-					<!-- Nav Search END -->
+					{% comment %} <!-- Nav Search END -->  {% endcomment %}
+
+					
 				</div>
 				<!-- Main navbar END -->
 	
-				<!-- Cart dropdown START -->
+				
+				{% if user.is_authenticated %}
+				{% if user.is_active %}
+				{% comment %} <!-- Cart dropdown START --> {% endcomment %}
 				<div class="me-2 me-md-3 dropdown">
 					<!-- Cart button -->
 					<a class="btn btn-light btn-round mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -193,10 +199,10 @@
 						</div>
 					</div>
 					<!-- Cart dropdown menu END -->
-				</div>
-				<!-- Cart dropdown END -->
+				</div> 
+				{% comment %} <!-- Cart dropdown END --> {% endcomment %}
 	
-				<!-- Profile START -->
+				{% comment %} <!-- Profile START --> {% endcomment %}
 				<div class="dropdown ms-1 ms-lg-0">
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<img class="avatar-img rounded-circle" src="{% static 'assets/images/avatar/01.jpg' %} " alt="avatar">
@@ -215,12 +221,12 @@
 								</div>
 							</div>
 						</li>
-			  <li> <hr class="dropdown-divider"></li>
+			  			<li> <hr class="dropdown-divider"></li>
 						<!-- Links -->
 						<li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-						<li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+						<li><a class="dropdown-item bg-danger-soft-hover" href="{% url 'logout' %}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
 						<li> <hr class="dropdown-divider"></li>
 						<!-- Dark mode options START -->
 						<li>
@@ -248,12 +254,18 @@
 						</li> 
 						<!-- Dark mode options END-->
 					</ul>
-				</div>
-				<!-- Profile START -->
+				</div> 
+				{% comment %} <!-- Profile START --> {% endcomment %}
+				{% endif %}
+				{% else %}
+					<a class="btn btn-primary" href="{% url 'login' %}" ><i class="fa fa-lock"></i> Se connecter</a> 
+				{% endif %}
+
+
 			</div>
 		</nav>
-		<!-- Logo Nav END -->
+		{% comment %} <!-- Logo Nav END --> {% endcomment %}
 	</header>
-	<!-- Header END -->
+	{% comment %} <!-- Header END --> {% endcomment %}
 
     

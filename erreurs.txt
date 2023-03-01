@@ -1,0 +1,3 @@
+python manage.py migrate --fake
+
+« Ce qui me plaît chez OpenClassrooms, c'est accompagner les étudiants pour les amener vers un métier qu’ils aiment. »

@@ -42,6 +42,7 @@
                     
                         <!-- Form START -->
                         <form>
+
                             <!-- Email -->
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address *</label>
@@ -76,7 +77,9 @@
                             <!-- Button -->
                             <div class="align-items-center mt-0">
                                 <div class="d-grid">
-                                    <button class="btn btn-primary mb-0" type="button">Sign Up</button>
+                                    <input type="submit" class="btn btn-primary mb-0" value="Sign Up">
+
+                                    {% comment %} <button class="btn btn-primary mb-0" type="button">Sign Up</button> {% endcomment %}
                                 </div>
                             </div>
                         </form>
@@ -101,7 +104,7 @@
 
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
-                            <span>Already have an account?<a href="sign-in.html"> Sign in here</a></span>
+                            <span>Already have an account?<a href="{% url 'login' %}"> Sign in here</a></span>
                         </div>
                     </div>
                 </div>

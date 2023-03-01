@@ -33,7 +33,7 @@ class UserProfileManager(BaseUserManager):
 class Profession(models.Model):   
     uid=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     title=models.CharField(verbose_name='Title',max_length=200)
-    description=models.TextField()
+    description=models.TextField(null=True,blank=True,)
     created=models.DateField(auto_now_add=True,blank=True,null=True,verbose_name='Create date')
     updated=models.DateTimeField(auto_now=True,verbose_name='Update date')
     
@@ -42,8 +42,23 @@ class Profession(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+class Specialite(models.Model):   
+    uid=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    title=models.CharField(verbose_name='Title',max_length=200)
+    description=models.TextField(null=True,blank=True,)
+    created=models.DateField(auto_now_add=True,blank=True,null=True,verbose_name='Create date')
+    updated=models.DateTimeField(auto_now=True,verbose_name='Update date')
     
+    class Meta:
+        verbose_name="Specialite"
+
+    def __str__(self) -> str:
+        return self.title
+        
 class User(AbstractUser):
+	uid=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+	
 	is_student = models.BooleanField(default=False)
 	is_teacher = models.BooleanField(default=False)
 
@@ -68,6 +83,7 @@ class User(AbstractUser):
 
 	telephone= models.CharField(null=True,blank=True,unique=True,max_length=12)
 	profession=models.ForeignKey(Profession,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_profession")
+	specialite=models.ForeignKey(Specialite,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_specialite")
 	pays= models.CharField(null=True,blank=True,unique=True,max_length=12)
 	
 	is_active = models.BooleanField(default=True)
@@ -152,10 +168,17 @@ class Teacher(models.Model):
 		return f'{self.user.email}'
 	
 # la class Competence
+VALEURS = (
+    (0, "50"),
+    (1, "60"),
+    (2, "80"),
+    (3, "90"),
+)
+
 class Competence(models.Model):
     uid=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     title=models.CharField(verbose_name='Title',max_length=200)
-    pourcentage=models.IntegerField(null=True,blank=True,verbose_name="Pourcentage")
+    pourcentage=models.IntegerField(choices=VALEURS, default=0,null=True,blank=True,verbose_name="Pourcentage")
     teacher=models.ForeignKey(Teacher,on_delete=models.SET_NULL,blank=True,null=True,verbose_name='Teacher',related_name="fk_teacher_competence")
     created=models.DateField(auto_now_add=True,blank=True,null=True,verbose_name='Create date')
     updated=models.DateTimeField(auto_now=True,verbose_name='Update date')
