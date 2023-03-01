@@ -17,6 +17,7 @@ def LoginPage(request):
     return render(request,'auth/login.html')
 
 def LogoutPage(request):
+    
     logout(request)
     return render(request,'auth/login.html')
 

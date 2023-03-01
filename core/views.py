@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from contact.forms import ContactForm
-from django.core.mail import EmailMessage
 from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def home(request):
@@ -12,30 +12,41 @@ def home(request):
 def about(request):
     return render(request,'client/pages/about.html')
 
+@csrf_exempt
 def contact(request):
     form=ContactForm(request.POST)
-    if form.is_valid():   
-        instance=form.save(commit=False)
-        instance.save()
+    if request.method=='POST':
+        nom=request.POST.get('nom')
+        email=request.POST.get('email')
+        message=request.POST.get('message')
 
-        
-        nom=form.cleaned_data['nom']
-        email=form.cleaned_data['email']
-        message=form.cleaned_data['message']
+        print(nom,email,message)
+        if form.is_valid():   
+            instance=form.save(commit=False)
+            instance.save()
 
-        # from_email = settings.DEFAULT_FROM_EMAIL
-        
-        email = EmailMessage(
-        _('Nouveau message de myealearning'),
-        content,
-        _('myealearning'),
-        [config('ADMIN_EMAIL')],
-        headers = { 'Reply-To': contact_email }
-        )
-        email.send()
-        messages.success(request, _('Thank you ! We will check in as soon as possible ;-)'))
+            # from_email = settings.ADMIN_EMAIL
             
-        return redirect("home")
+            # f=f'''E-mail de Contact de EDUPLUS
+
+            # Nom du client : {nom}
+            # E-mail du client : {email}
+            # Méssage : 
+            #     {message}
+            # '''
+
+
+            # send_mail(
+            # 'VOUS AVEZ ÉTÉ CONTACTÉ DEPUIS EDUPLUS',
+            # # message,
+            # f,
+            # from_email,
+            # [email],
+            # fail_silently=False,
+            # )
+
+            return redirect("/")
+
     context={
     'form':form,
     }  

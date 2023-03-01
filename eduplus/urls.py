@@ -5,12 +5,16 @@ from django.conf.urls.static import static
 from ckeditor_uploader import views as ckeditor_views
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _ 
+import debug_toolbar
+
+
 
 urlpatterns = i18n_patterns(
     ################# Admin ####################
     path('admin/', admin.site.urls),
     ################# End Admin ####################
 
+    path('__debug__/', include(debug_toolbar.urls)),
 
     path('', include('core.urls')),
 

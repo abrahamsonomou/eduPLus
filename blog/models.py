@@ -1,9 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.urls import reverse
 import uuid
 from taggit.managers import TaggableManager
 from django_ckeditor_5.fields import CKEditor5Field
+from accounts.models import User
 
 # Create your models here.
 STATUS = (

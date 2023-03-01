@@ -1,13 +1,17 @@
 from django.contrib import admin
 from .models import *
+from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
+class ContactAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display=('nom','email','message','updated')
 
-@admin.register(NewsLetter)
-class NewsLetterAdmin(admin.ModelAdmin):
+admin.site.register(Contact,ContactAdmin)
+
+
+class NewsLetterAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display=('email','created',)
+
+admin.site.register(NewsLetter,NewsLetterAdmin)
 
     

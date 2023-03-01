@@ -22,6 +22,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+   # ...
+   '127.0.0.1',
+   # ...
+]
 
 # Application definition
 
@@ -39,8 +44,8 @@ TIERS_APPS=[
     'taggit',
     'django_ckeditor_5',
     'import_export',
+    'debug_toolbar',
 ]
-
 PROJECT_APPS=[
     'core',
     'blog',
@@ -61,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', #new
 ]
 
 ROOT_URLCONF = 'eduplus.urls'
@@ -181,6 +187,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 customColorPalette = [
         {
             'color': 'hsl(4, 90%, 58%)',
@@ -277,6 +286,12 @@ CKEDITOR_5_CONFIGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'accounts/login'
+LOGOUT_URL = 'accounts/logout'
+
 # social auth configs for github
 SOCIAL_AUTH_GITHUB_KEY = str(os.getenv('GITHUB_KEY'))
 SOCIAL_AUTH_GITHUB_SECRET = str(os.getenv('GITHUB_SECRET'))
@@ -286,10 +301,28 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('GOOGLE_KEY'))
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('GOOGLE_SECRET'))
 
 # email configs
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = str(os.getenv('EMAIL_PORT'))
+# EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
+# EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
+
+# ADMIN_EMAIL = str(os.getenv('ADMIN_EMAIL'))
+# SUPPORT_EMAIL = str(os.getenv('SUPPORT_EMAIL'))
+# DEFAULT_FROM_EMAIL = ADMIN_EMAIL
+# SERVER_EMAIL = ADMIN_EMAIL
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
-EMAIL_USE_TLS = True
-EMAIL_PORT = str(os.getenv('EMAIL_PORT'))
-EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
-EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
+EMAIL_HOST='smtp.titan.email'
+EMAIL_HOST_USER='contact@sonomou.tech'
+EMAIL_HOST_PASSWORD='P@ssw0rd#12'  
+EMAIL_PORT= 465
+# EMAIL_USE_SSL=True
+
+ADMIN_EMAIL = "contact@sonomou.tech"
+SUPPORT_EMAIL = "contact@sonomou.tech"
+DEFAULT_FROM_EMAIL = ADMIN_EMAIL
+SERVER_EMAIL = ADMIN_EMAIL
+
 
