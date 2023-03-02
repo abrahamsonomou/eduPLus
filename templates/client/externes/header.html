@@ -216,8 +216,8 @@
 									<img class="avatar-img rounded-circle shadow" src="{% static 'assets/images/avatar/01.jpg' %} " alt="avatar">
 								</div>
 								<div>
-									<a class="h6" href="#">Lori Ferguson</a>
-									<p class="small m-0">example@gmail.com</p>
+									<a class="h6" href="#">{{user.get_shortname}}</a>
+									<p class="small m-0">{{user.email}}</p>
 								</div>
 							</div>
 						</li>

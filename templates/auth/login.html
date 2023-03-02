@@ -67,41 +67,45 @@
 									<label for="exampleInputEmail1" class="form-label">Email address *</label>
 									<div class="input-group input-group-lg">
 										{% comment %} <input type="email" name="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="exampleInputEmail1"> {% endcomment %}
-										{% if form.email.errors %}
-										{% for error in form.email.errors %}
-										<div class="div-error-{{form.email.name}}">
-										<small class="text-danger">{{error}}</small>
-										</div>
-										{% endfor %}
-										{% endif %}
-
 										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
 										{{form.email}}
 										
 										{% comment %} <input type="text" name="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="exampleInputEmail1"> {% endcomment %}
 									</div>
+
+									{% if form.email.errors %}
+									{% for error in form.email.errors %}
+										<div id="passwordHelpBlock" class="form-text div-error-{{form.email.name}}">
+											<small class="text-danger">{{error}}</small>
+										</div>
+									{% endfor %}
+									{% endif %}
+
 								</div>
+
 								<!-- Password -->
 								<div class="mb-4">
 									<label for="inputPassword5" class="form-label">Password *</label>
 									<div class="input-group input-group-lg">
 										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
-										
-										{% if form.password.errors %}
-										{% for error in form.password.errors %}
-										<div class="div-error-{{form.password.name}}">
-										<small class="text-danger">{{error}}</small>
-										</div>
-										{% endfor %}
-										{% endif %}
 										{{form.password}}
-
 										{% comment %} <input type="password"  name="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="password" id="inputPassword5"> {% endcomment %}
 									</div>
+
+									{% if form.password.errors %}
+									{% for error in form.password.errors %}
+										<div id="passwordHelpBlock" class="form-text div-error-{{form.password.name}}">
+											<small class="text-danger">{{error}}</small>
+										</div>
+									{% endfor %}
+									{% else %}
 									<div id="passwordHelpBlock" class="form-text">
 										Your password must be 8 characters at least 
 									</div>
+									{% endif %}
+
 								</div>
+
 								<!-- Check box -->
 								<div class="mb-4 d-flex justify-content-between mb-4">
 									<div class="form-check">

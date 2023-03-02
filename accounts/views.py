@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
-from .models import User
+from .models import User,Student
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
@@ -77,7 +77,8 @@ def RegisterPage(request):
                 else:
                     user=User.objects.create_user(email=email,password=password)
                     if user is not None:
-                        login(request,user)
+                        # login(request,user)
+                        # Student.objects.create(user=user)
                         return redirect('login')
                     else:
                         messages.error(request,'Creation de compte echouee')
@@ -85,11 +86,10 @@ def RegisterPage(request):
         else:
             for field in form.errors:
                 form[field].field.widget.attrs['class']+= ' is-invalid'
-            return render(request,"accounts/auth/register.html",{"form":form})
+            return render(request,"auth/register.html",{"form":form})
     else:
         form=RegisterForm(request.POST)
-    return render(request,"accounts/auth/register.html",{"form":form})
-
+    return render(request,"auth/register.html",{"form":form})
 
 def reset_password(request):
     return render(request,'auth/reset_password.html')

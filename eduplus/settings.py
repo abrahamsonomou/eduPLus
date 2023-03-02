@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,13 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
 INTERNAL_IPS = [
    # ...
-   '127.0.0.1',
+#    '127.0.0.1',
+'*',
    # ...
 ]
 
@@ -45,6 +47,12 @@ TIERS_APPS=[
     'django_ckeditor_5',
     'import_export',
     'debug_toolbar',
+    'django_countries',
+    'phonenumber_field',
+
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
+
 ]
 PROJECT_APPS=[
     'core',
@@ -67,6 +75,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware', #new
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'eduplus.urls'
@@ -106,7 +116,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'db_eduplus',
 #         'USER': 'eduplususer',
-#         'PASSWORD': 'p@ssw0rd',
+#         'PASSWORD': '75PJtcUzVHiF!ue',
 #         'HOST': 'localhost',
 #         'PORT': '',
 #     }

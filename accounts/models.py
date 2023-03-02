@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractUser
 from PIL import Image
 from django.contrib.auth.models import BaseUserManager
 import uuid
+from django_countries.fields import CountryField
+from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
 
 # Create your models here.
 class UserProfileManager(BaseUserManager):
@@ -81,10 +84,10 @@ class User(AbstractUser):
 	youtube = models.CharField(
 	    blank=True, null=True, name='youtube', verbose_name="Linkdin", max_length=200)
 
-	telephone= models.CharField(null=True,blank=True,unique=True,max_length=12)
+	telephone= PhoneNumberField(null=False, blank=False, unique=True)
 	profession=models.ForeignKey(Profession,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_profession")
 	specialite=models.ForeignKey(Specialite,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_specialite")
-	pays= models.CharField(null=True,blank=True,unique=True,max_length=12)
+	pays = CountryField(null=True,blank=True,blank_label='(select country)')
 	
 	is_active = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)

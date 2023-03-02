@@ -1,3 +1,7 @@
 python manage.py migrate --fake
 
 « Ce qui me plaît chez OpenClassrooms, c'est accompagner les étudiants pour les amener vers un métier qu’ils aiment. »
+
+web: gunicorn eduplus.wsgi:application --preload
+worker: celery worker --app=eduplus --loglevel=info -B
+release: python manage.py migrate
