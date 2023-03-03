@@ -19,14 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['eduplus.herokuapp.com','https:// eduplus.herokuapp.com/',]
+                 
 INTERNAL_IPS = [
    # ...
 #    '127.0.0.1',
-'*',
+'eduplus.herokuapp.com',
    # ...
 ]
 
@@ -97,29 +98,32 @@ TEMPLATES = [
     },
 ]
 
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=True) }
+
+
 WSGI_APPLICATION = 'eduplus.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'db_eduplus',
-#         'USER': 'eduplususer',
-#         'PASSWORD': '75PJtcUzVHiF!ue',
-#         'HOST': 'localhost',
-#         'PORT': '',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'userdb_eduplus',
+        'USER': 'userdb',
+        'PASSWORD': '75PJtcUzVHiF!ue',
+        'HOST': 'postgresql-userdb.alwaysdata.net',
+        'PORT': '',
+    }
+}
 
 
 # Password validation
