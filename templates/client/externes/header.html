@@ -216,15 +216,21 @@
 									<img class="avatar-img rounded-circle shadow" src="{% static 'assets/images/avatar/01.jpg' %} " alt="avatar">
 								</div>
 								<div>
-									<a class="h6" href="#">{{user.get_shortname}}</a>
+									{% if user.last_name and user.first_name %}
+									<a class="h6" href="#">
+										{{user.get_shortname}}
+									</a>
+									{% endif %}
+									{% if user.email %}
 									<p class="small m-0">{{user.email}}</p>
+									{% endif %}
 								</div>
 							</div>
 						</li>
 			  			<li> <hr class="dropdown-divider"></li>
 						<!-- Links -->
 						<li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-						<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
+						<li><a class="dropdown-item" href="{% url 'StudentProfile' %}"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
 						<li><a class="dropdown-item bg-danger-soft-hover" href="{% url 'logout' %}"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
 						<li> <hr class="dropdown-divider"></li>
@@ -258,7 +264,9 @@
 				{% comment %} <!-- Profile START --> {% endcomment %}
 				{% endif %}
 				{% else %}
-					<a class="btn btn-primary" href="{% url 'login' %}" ><i class="fa fa-lock"></i> Se connecter</a> 
+				
+					<a class="btn btn-primary" href="{% url 'studentLogin' %}" ><i class="fa fa-lock"></i> Login</a> 
+					{% comment %} <a class="btn btn-primary" href="{% url 'login' %}" ><i class="fa fa-lock"></i> Se connecter</a>  {% endcomment %}
 				{% endif %}
 
 

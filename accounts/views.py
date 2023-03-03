@@ -95,9 +95,54 @@ def reset_password(request):
     return render(request,'auth/reset_password.html')
 
 def studentLogin(request):
+    if request.method =="POST":
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+
+        user=User.objects.filter(email=email).first()
+        if user is not None:
+            print(user)
+            if check_password(password, user.password):
+                #users=User.objects.filter(email=email).first()
+                if not user.is_active:
+                    messages.warning(request,"Votre compte n'est pas activé, veuillez contacter l'administrateur")
+                    return redirect('studentLogin')
+                    
+                login(request,user)
+                return redirect('home')
+        else:
+            messages.warning(request,"Autehtification echouee. Vos informations sont incorrectes")
+            return redirect('studentLogin')
     return render(request,'auth/student-login.html')
 
 def studentRegister(request):
+    if request.method =="POST":
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        password_confirm=request.POST.get('password_confirm')
+
+        print(email,password,password_confirm)
+
+        if password != password_confirm:
+            messages.warning(request,'Mot de passe non identique')
+            return redirect('studentRegister')
+        
+        if User.objects.filter(email=email).exists():
+            messages.warning(request,'Email are Already Exists !')
+            return redirect('studentRegister')
+        
+        user=User(email=email)
+        user.set_password(password)
+        user.save()
+
+        return redirect('studentLogin')
+
     return render(request,'auth/student-register.html')
 
+
+def StudentResetPassword(request):
+    return render(request,'auth/Student_reset_password.html')
+
+def StudentProfile(request):
+    return render(request,'students/student-dashboard.html')
 

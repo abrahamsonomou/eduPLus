@@ -84,7 +84,7 @@ class User(AbstractUser):
 	youtube = models.CharField(
 	    blank=True, null=True, name='youtube', verbose_name="Linkdin", max_length=200)
 
-	telephone= PhoneNumberField(null=False, blank=False, unique=True)
+	telephone= PhoneNumberField(null=False, blank=False)
 	profession=models.ForeignKey(Profession,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_profession")
 	specialite=models.ForeignKey(Specialite,on_delete=models.SET_NULL,blank=True,null=True,related_name="fk_specialite")
 	pays = CountryField(null=True,blank=True,blank_label='(select country)')

@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('studentLogin', views.studentLogin, name='studentLogin'),
     path('studentRegister', views.studentRegister, name='studentRegister'),
-
-    
+    path('Student_reset_password', views.StudentResetPassword, name='Student_reset_password'),
+    path('StudentProfile', views.StudentProfile, name='StudentProfile'),
 ]
 

@@ -19,9 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = [
    # ...
@@ -51,9 +51,8 @@ TIERS_APPS=[
     'phonenumber_field',
 
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
-
 ]
+
 PROJECT_APPS=[
     'core',
     'blog',
