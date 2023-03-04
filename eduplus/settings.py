@@ -22,12 +22,12 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['eduplus.herokuapp.com','https:// eduplus.herokuapp.com/',]
+ALLOWED_HOSTS = ['sonomou.tech','http://www.sonomou.tech/',]
                  
 INTERNAL_IPS = [
    # ...
 #    '127.0.0.1',
-'eduplus.herokuapp.com',
+'sonomou.tech',
    # ...
 ]
 
