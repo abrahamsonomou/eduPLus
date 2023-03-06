@@ -17,13 +17,14 @@ urlpatterns = i18n_patterns(
     path('__debug__/', include(debug_toolbar.urls)),
 
     path('', include('core.urls')),
+    path(r'',include('quiz.urls')),
 
     # path(r'',include('core.urls')),
     # path('api/', include('api.urls')),
    
    
     ############ Authentification #######################
-    # path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     # # path('accounts/', include('users.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
 
